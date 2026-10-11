@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TC &amp; Bug Tracking Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-100 text-gray-800 h-screen overflow-hidden">
+
+  <!-- ========================================================
+       LOGIN SCREEN  (shown by JS when unauthenticated)
+  ======================================================== -->
+  <div id="login-screen" class="hidden fixed inset-0 z-[200] flex items-center justify-center login-bg">
+    <div class="login-card w-full max-w-sm mx-4 bg-white rounded-2xl shadow-2xl p-8">
+      <div class="text-center mb-8">
+        <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+        </div>
+        <h1 class="text-xl font-bold text-gray-900">TC &amp; Bug Tracker</h1>
+        <p class="text-sm text-gray-500 mt-1">Sign in to your account</p>
+      </div>
+      <div id="login-error" class="hidden mb-4 px-4 py-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600"></div>
+      <div class="space-y-4">
+        <div>
+          <label class="form-label">Email</label>
+          <input id="login-email" type="email" class="form-input" placeholder="qa@company.com" />
+        </div>
+        <div>
+          <label class="form-label">Password</label>
+          <input id="login-password" type="password" class="form-input" placeholder="••••••••" />
+        </div>
+        <button id="login-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm">
+          Sign In
+        </button>
+      </div>
+      <p class="text-center text-xs text-gray-400 mt-6">Demo credentials: qa@company.com / password123</p>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MAIN APP  (shown by JS when authenticated)
+  ======================================================== -->
+  <div id="app-shell" class="hidden flex h-screen overflow-hidden">
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside id="sidebar" class="sidebar-panel w-64 bg-white border-r border-gray-200 flex flex-col shrink-0 h-full transition-all duration-300">
+      <!-- Logo -->
+      <div class="px-6 py-5 border-b border-gray-200 flex items-center justify-between">
+        <div class="flex items-center gap-3 sidebar-full-only">
+          <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm font-bold text-gray-900 leading-tight">TC&amp;Bug</p>
+            <p class="text-xs text-gray-500">Tracking Manager</p>
+          </div>
+        </div>
+        <button id="sidebar-toggle" class="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100" title="Toggle sidebar">
+          <svg id="toggle-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/>
+          </svg>
+          <svg id="toggle-icon-closed" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        <p class="sidebar-full-only text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 mb-3">Main Menu</p>
+        <a href="#" class="nav-link active" data-view="dashboard" title="Dashboard">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <span class="sidebar-full-only">Dashboard</span>
+        </a>
+        <a href="#" class="nav-link" data-view="testcases" title="Test Cases">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+          <span class="sidebar-full-only">Test Cases</span>
+        </a>
+        <a href="#" class="nav-link" data-view="bugs" title="Bug Tracker">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <span class="sidebar-full-only">Bug Tracker</span>
+        </a>
+        <a href="#" class="nav-link" data-view="reports" title="Reports">
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+          <span class="sidebar-full-only">Reports</span>
+        </a>
+      </nav>
+
+      <!-- User profile -->
+      <div class="px-3 py-4 border-t border-gray-200">
+        <div class="flex items-center gap-3 px-1">
+          <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm shrink-0 cursor-pointer hover:ring-2 hover:ring-blue-300 transition-all" id="profile-avatar" title="Profile settings">QA</div>
+          <div class="flex-1 min-w-0 sidebar-full-only">
+            <p id="profile-name-label" class="text-sm font-medium text-gray-800 truncate">QA Engineer</p>
+            <p id="profile-email-label" class="text-xs text-gray-500 truncate">qa@company.com</p>
+          </div>
+          <button id="logout-btn" class="sidebar-full-only text-gray-400 hover:text-red-500 transition-colors p-1 rounded-lg hover:bg-red-50 shrink-0" title="Logout">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+      <!-- HEADER -->
+      <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between shrink-0">
+        <div>
+          <h1 id="page-title" class="text-lg font-semibold text-gray-900">Dashboard</h1>
+          <p id="page-subtitle" class="text-sm text-gray-500">Overview of your testing activities</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="header-date" class="text-sm text-gray-500 hidden sm:block"></span>
+
+          <!-- Dark mode toggle -->
+          <button id="theme-toggle" class="p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors" title="Toggle dark mode">
+            <svg id="icon-moon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+            <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          </button>
+
+          <button id="header-action-btn" class="hidden bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            <span id="header-action-label">Add</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- CONTENT AREA -->
+      <main class="flex-1 overflow-y-auto p-6">
+        <div id="view-container"></div>
+      </main>
+    </div>
+
+  </div><!-- /#app-shell -->
+
+  <!-- ========== MODAL ========== -->
+  <div id="modal-overlay" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div id="modal-box" class="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 shrink-0">
+        <h2 id="modal-title" class="text-base font-semibold text-gray-900">Modal</h2>
+        <button id="modal-close" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="modal-body" class="overflow-y-auto flex-1 px-6 py-4"></div>
+      <div id="modal-footer" class="flex justify-end gap-3 px-6 py-4 border-t border-gray-200 shrink-0"></div>
+    </div>
+  </div>
+
+  <!-- ========== TOAST ========== -->
+  <div id="toast-container" class="fixed bottom-4 right-4 z-[100] space-y-2 pointer-events-none"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+Iteration 1:
+Anda adalah seorang Senior Frontend Engineer yang berpengalaman membangun website modern menggunakan HTML, Tailwind CSS, dan Vanilla JavaScript. 
+Tugas Anda adalah menghasilkan kode yang clean, modular, mudah dipahami, mengikuti best practice frontend, serta siap dijalankan.
+
+Buatlah sebuah aplikasi bernama Test Case & Bug Tracking Manager menggunakan HTML, Tailwind CSS, dan Vanilla JavaScript (tanpa framework). 
+Pisahkan kode ke dalam tiga file, yaitu: 
+- index.html, 
+- style.css,
+- script.js.
+Gunakan sidebar di sebelah kiri sebagai navigasi, header di bagian atas, area konten utama di sebelah kanan, warna netral seperti putih, abu-abu, dan biru, card untuk menampilkan ringkasan data, Tabel untuk menampilkan daftar test case dan bug, badge berwarna untuk status dan prioritas, dan Modal untuk menambah, mengedit, melihat detail, dan menghapus data.
+
+Semua menu harus berjalan dalam satu halaman tanpa berpindah halaman atau melakukan reload. Gunakan Vanilla JavaScript untuk mengganti konten yang ditampilkan sesuai menu yang dipilih. Semua form tambah dan edit harus menggunakan modal. Jangan membuat halaman baru untuk setiap fitur.
+
+Iteration 2:
+Lakukan perbaikan pada menu pada sebelah kiri agar dapat di tutup sehingga konten pada sebelah kanan menjadi fullscreen. Lalu tambahkan fitur pemilihan dark and night mode tanpa melakukan perubahan html yang ada dengan penambahan javascript.Selanjutnya berikan opsi setting pada profile untuk melakukan perubahan nama, email, dan password. Serta lakukan penambahan login page dan logout page tanpa merubah code html yang ada.
+
+Iteration 3:
+Lakukan perbaikan pada fitur ubah nama, perubahan nama tidak tersimpan sehingga saat melakukan logout nama akan kembali menjadi default QA Engineer.
+
+Lakukan penambahan grafik pada dashboard untuk mempermudah pembacaan total case, passed, failed, open bugs yang dapat difilter berdasarkan rentang tanggal.
+Grafik yang idgunakan dapat berupa pie chart.
+
+Iteration 4:
+Lakukan perbaikan pada grafik dashbaord saat data hanya 1 piechart tidak terlihat, lalu lakukan penambahan fitur pemilihan tanggal pada test case dan bug tracker, pemilihan tanggal tidak boleh melebihi hari berjalan.
+
+Iteration 5:
+Lakukan perbaikan pada recent test cases dan recents bugs pada dashboard dengan memberikan informasi siapa yang dilakukan assignment dan summary dari testcase atau recent bugs, 
+lalu ganti assigne dari text menjadi dropdown dengan pilihan Ibnu, Nuril, atau Aleena.
